@@ -94,6 +94,13 @@ class Api extends Controller
                         if (!$data) {
                             header("location:" . BASEURL . "apierror");
                             exit;
+                        } else {
+                            if ($_POST['quantity'] > 0) {
+                                $data = $this->model('Product_model')->getNewProductByTenan($_POST['tenan_id']);
+                                if ($data) {
+                                    $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $data['product_id']);
+                                }
+                            }
                         }
                     } else {
                         if (Bunlib::uploadImgBase64($_POST['picture_name'], 'img/produk/', $_POST['picture'], $_POST['tenan_id'])) {
@@ -102,12 +109,26 @@ class Api extends Controller
                             if (!$data) {
                                 header("location:" . BASEURL . "apierror");
                                 exit;
+                            } else {
+                                if ($_POST['quantity'] > 0) {
+                                    $data = $this->model('Product_model')->getNewProductByTenan($_POST['tenan_id']);
+                                    if ($data) {
+                                        $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $data['product_id']);
+                                    }
+                                }
                             }
                         } else {
                             $data = $this->model('Product_model')->createProduct($_POST);
                             if (!$data) {
                                 header("location:" . BASEURL . "apierror");
                                 exit;
+                            } else {
+                                if ($_POST['quantity'] > 0) {
+                                    $data = $this->model('Product_model')->getNewProductByTenan($_POST['tenan_id']);
+                                    if ($data) {
+                                        $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $data['product_id']);
+                                    }
+                                }
                             }
                         }
                     }

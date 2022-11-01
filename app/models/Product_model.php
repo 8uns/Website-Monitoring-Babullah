@@ -35,12 +35,27 @@ class Product_model
         products.picture picture, 
         products.quantity quantity,
         tenan.name name,
-
         tenan_id 
         FROM `products` JOIN tenan USING(tenan_id) 
         WHERE tenan_id=$tenanId
         ORDER BY product_id DESC");
         return $this->db->resultSet();
+    }
+
+    public function getNewProductByTenan($tenanId)
+    {
+        $this->db->query("SELECT 
+        product_id, 
+        products.name name_product, 
+        products.price price, 
+        products.picture picture, 
+        products.quantity quantity,
+        tenan.name name,
+        tenan_id 
+        FROM `products` JOIN tenan USING(tenan_id) 
+        WHERE tenan_id=$tenanId
+        ORDER BY product_id DESC LIMIT 0,1 ");
+        return $this->db->single();
     }
     public function getProductOnlyById($id)
     {
@@ -132,6 +147,7 @@ class Product_model
             return $this->db->rowCount();
         } else {
             $data['name'] = isset($data['name']) ?  $data['name'] : '';
+            $data['quantity'] = isset($data['quantity']) ?  $data['quantity'] : '';
             $data['price'] = isset($data['price']) ?  $data['price'] : '';
             $data['picture'] = $namePicture;
             $data['tenan_id'] = isset($data['tenan_id']) ?  $data['tenan_id'] : '';
@@ -141,14 +157,16 @@ class Product_model
             }
 
             $query = "INSERT INTO `products` 
-                    (name, price, picture, tenan_id) 
+                    (name, price, picture, tenan_id, quantity) 
                         VALUES
-                        (:name, :price, :picture, :tenan_id)";
+                        (:name, :price, :picture, :tenan_id, :quantity)";
             $this->db->query($query);
             $this->db->bind('name', $data['name']);
             $this->db->bind('price', $data['price']);
             $this->db->bind('picture', $data['picture']);
             $this->db->bind('tenan_id', $data['tenan_id']);
+            $this->db->bind('quantity', $data['quantity']);
+
 
             $this->db->execute();
             return $this->db->rowCount();
