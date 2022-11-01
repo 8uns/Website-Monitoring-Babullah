@@ -1,0 +1,448 @@
+@font-face {
+    font-family: cabinBold;
+    src: url('../font/Cabin-Bold-TTF.ttf');
+}
+
+@font-face {
+    font-family: cabin;
+    src: url('../font/Cabin-Regular-TTF.ttf');
+}
+
+@font-face {
+    font-family: cantarelBold;
+    src: url('../font/Cantarell-Bold.otf');
+}
+
+@font-face {
+    font-family: cantarel;
+    src: url('../font/Cantarell-Regular.otf');
+}
+
+* {
+    font-family: cabin;
+}
+
+.body-container {
+    background-color: white;
+    background-image: url('../img/logotran.png');
+    -webkit-tap-highlight-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: revert-layer;
+}
+
+.banner img {
+    /* filter: blur(5px); */
+    height: 500px;
+    width: auto;
+}
+
+div#banner {
+    border-radius: 0px;
+}
+
+
+div#banner div, div#banner img {
+    border-radius: 0px;
+}
+
+div#banner p {
+    margin-top: 180px;
+}
+
+.container.sidebar {
+    position: relative;
+    margin-top: 12px;
+}
+
+.container.sidebar div div {
+    position: absolute;
+    z-index: 2;
+}
+
+.body-container .beranda-content {
+    height: 40rem;
+}
+
+.body-container .btn-primary, .body-container .btn-secondary, .body-container .btn-warning, .body-container .btn-success, .body-container .btn-danger, .body-container .btn-info, .body-container .btn-dark {
+    border-radius: 10px;
+    border: none;
+    color: white;
+}
+
+.body-container .btn-primary {
+    background: #0093AB;
+    color: white;
+    border-radius: 10px;
+}
+
+.beranda-content .btn-primary, .beranda-content .btn-secondary {
+    box-shadow: 3px 29px 28px #00000038;
+    padding: 8px 23px;
+}
+
+body.body-container a.navbar-brand strong {
+    font-size: 1.5rem;
+    color: #3c3c3c;
+    text-shadow: 1px 1px 3px #0000004d;
+    border-right: 1px solid #FFD124;
+    padding: 0px 0px 4px 0px;
+    margin-right: 8px;
+}
+
+body.body-container a.navbar-brand {
+    font-size: 1rem;
+    color: #b5b5b5;
+    text-shadow: none;
+}
+
+.body-container #kontak a {
+    color: initial;
+}
+
+.body-container #kontak i {
+    color: #3F72AF;
+    font-size: 25px;
+}
+
+div#register {}
+
+div#register input, div#register select {
+    border-radius: 5px;
+}
+
+
+div#register button.btn.btn-primary, div#register button.btn.btn-secondary {
+
+    padding: 10px 15px
+}
+
+div#login input, div#login select {
+    border-radius: 6px;
+}
+
+
+div#login button.btn.btn-primary, div#login button.btn.btn-secondary {
+
+    padding: 10px 15px
+}
+
+div#login a.stretched-link {
+    color: #3F72AF8a;
+}
+
+.container.sidebar a.nav-link {
+    color: #1d1d1d;
+    font-size: 15px;
+    border-radius: 20px;
+    text-shadow: 1px 1px 4px #0000004a;
+    background: #ffffffa3;
+}
+
+.container.sidebar a.nav-link:hover {
+    background: #8ec7e6;
+    color: white;
+    border-radius: 5px;
+}
+
+.container.sidebar a.nav-link.active {
+    background: #FFD124;
+    color: #3c3c3c;
+    border-radius: 20px;
+}
+
+.container.sidebar i.fas, .container.sidebar i.fab {
+    width: 27px;
+}
+
+
+.body-container .alert.alert-danger {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 2px 2px 4px #00000052;
+    background: #e68eae;
+    color: white;
+}
+
+.container.dashboard {}
+
+.container.dashboard .card.border-secondary {
+    border-radius: 13px;
+    border: none;
+    box-shadow: 4px 4px 16px #00000047;
+}
+
+.container.dashboard .card .card-header {
+    font-weight: bold;
+}
+
+.container.dashboard .card-header {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.container.dashboard .card-body {
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+
+.container.dashboard .card {
+    border-radius: 5px;
+    border: none;
+}
+
+.container.registerpasien {}
+
+.container.registerpasien .card {
+    border: none;
+    box-shadow: 4px 4px 16px #00000047;
+    border-radius: 15px;
+}
+
+.container.registerpasien .card a.card-link {
+    color: #8ec7e6;
+}
+
+.container.registerpasien .card h1 {
+    color: #2e92c9;
+    font-size: 10rem;
+}
+
+body.body-container ul.dropdown-menu.show {
+    border: none;
+    box-shadow: 4px 4px 4px #0000001c;
+    background: #f3f3f3;
+    padding: 19px 11px;
+    width: 14rem;
+}
+
+body.body-container ul.dropdown-menu.show a {
+    color: #737373;
+    cursor: pointer;
+}
+
+body.body-container ul.dropdown-menu.show a i {
+    padding: 0px 0px;
+    width: 20px;
+}
+
+.container.profil {}
+
+.container.profil .card {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 4px 4px 16px #00000047;
+    padding-bottom: 13px;
+    padding-right: 9px;
+}
+
+div#login\ admin {
+    background: #ffffffb8;
+    color: #3e3e3e;
+    border-radius: 8px;
+    box-shadow: 4px 4px 21px #0000001f;
+
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div#login\ admin button.btn.btn-primary {
+    background: #FFD124;
+    padding: 10px 65px;
+    font-weight: bold;
+    color: #1d1d1d;
+}
+
+div#login\ admin input {
+    border-radius: 9px;
+    padding: 12px 18px;
+    width: 85%;
+    display: inline-block;
+    margin: 0px 5px;
+}
+
+.container.antrian-pasien {}
+
+.body-container .antrian-pasien .card {
+    border: none;
+    box-shadow: 4px 4px 16px #00000047;
+    border-radius: 15px;
+}
+
+.body-container .btn-warning {
+    background: #c9b62e;
+    color: white;
+    border-radius: 10px;
+}
+
+.body-container .btn-success {
+    background: #2ec997;
+    border-radius: 10px;
+
+}
+
+.body-container .btn-dark {
+    border-radius: 10px;
+
+}
+
+.body-container .btn-danger {
+    background: #c92e3c;
+    border-radius: 10px;
+}
+
+body.body-container .card {
+    border: none;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 4px 4px 16px #0000001a;
+}
+
+.row.notfound p {
+    margin: 0px;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+
+.dataTables_paginate a.paginate_button.current {
+    border-radius: 5px;
+    padding: 2px 17px;
+}
+
+#tableSearch_filter input[type="search"] {
+    border-radius: 10px;
+    box-shadow: 2px 2px 14px #00000052;
+    border: none;
+    padding: 6px 15px;
+}
+
+#tableSearch_wrapper select {
+    border-radius: 8px;
+    padding: 5px 8px;
+}
+
+body.body-container nav.navbar.navbar-expand-lg {
+    background: white;
+    box-shadow: 1px 1px 12px #d1d1d1;
+}
+
+div#kontak a.navbar-brand strong {
+    color: #3F72AF;
+}
+
+.container-fluid.tentang {
+    background: #F5EEDC;
+}
+
+.body-container .btn-info {
+    background: #31b6d1;
+}
+
+td.presentase h6 {
+    margin: 2px;
+    background: #4bc0c0;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 9px;
+    padding: 11px 0px;
+    color: white;
+}
+
+button.btn.btn-secondary {
+    border-radius: 10px;
+}
+
+div.modal-content {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 1px 110px #0000007a;
+}
+
+input.form-control {
+    border-radius: 10px;
+}
+
+.container.sidebar a.nav-link:hover {
+    background: #ffe171;
+    border-radius: 20px;
+    transition: 0.7s;
+}
+
+.card .card-body {
+    padding: 20px 25px;
+}
+
+
+.body-login {
+    background-image: url('../img/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-blend-mode: overlay;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffff0063;
+}
+
+
+.opening .center {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+}
+
+.opening .center h1 {
+    font-size: 80px;
+    font-weight: bold;
+
+    text-shadow: 1px 1px 9px #6f6f6fad;
+}
+
+
+.opening .center h6 {
+    font-size: 17px;
+}
+
+.opening {
+    position: absolute;
+    z-index: 1;
+    background: #ffd124;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: white;
+
+    transition: transform ease-out 5s;
+    background-image: url('../img/bg4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #222222c4;
+    background-blend-mode: unset;
+}
+
+@keyframes animopening {
+    from {
+        transform: translate(0%, 0%);
+    }
+
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+.footer-body div {
+    font-size: 12px;
+}
