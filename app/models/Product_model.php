@@ -22,7 +22,7 @@ class Product_model
         tenan_id 
         FROM `products` JOIN tenan USING(tenan_id) 
         WHERE acount_id=$acounid
-        ORDER BY product_id DESC");
+        ORDER BY name ASC");
         return $this->db->resultSet();
     }
 
@@ -178,19 +178,17 @@ class Product_model
     {
         $data['name'] = isset($data['name']) ?  $data['name'] : '';
         $data['price'] = isset($data['price']) ?  $data['price'] : '';
-        $data['picture'] = isset($data['picture']) ?  $data['picture'] : '';
-        $data['tenan_id'] = isset($data['tenan_id']) ?  $data['tenan_id'] : '';
+        // $data['picture'] = isset($data['picture']) ?  $data['picture'] : '';
+        // $data['tenan_id'] = isset($data['tenan_id']) ?  $data['tenan_id'] : '';
         $query = "UPDATE `products`  
                     SET 
                     name=:name, 
-                    price=:price, 
-                    picture=:picture
+                    price=:price 
                     WHERE product_id=:product_id
                     ";
         $this->db->query($query);
         $this->db->bind('name', $data['name']);
         $this->db->bind('price', $data['price']);
-        $this->db->bind('picture', $data['picture']);
 
         $this->db->bind('product_id', $id);
         $this->db->execute();
