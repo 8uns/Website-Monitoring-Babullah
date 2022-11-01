@@ -60,6 +60,38 @@ class StockTransaction_model
         JOIN tenan USING(tenan_id)
         JOIN acounts USING(acount_id)
         WHERE acount_id=$acounid AND in_out='masuk'
+        AND date=(
+                    SELECT 
+                    stock_transactions.date date
+                    FROM `stock_transactions` 
+                    JOIN products USING(product_id)
+                    JOIN tenan USING(tenan_id)
+                    JOIN acounts USING(acount_id)
+                    WHERE acount_id=$acounid 
+                    ORDER BY date DESC, time DESC LIMIT 0,1
+                    )
+        ORDER BY date DESC, time DESC");
+        return $this->db->resultSet();
+    }
+    public function getInventoryAllByDate($acounid, $date)
+    {
+        $this->db->query("SELECT 
+        stock_transactions.date date,
+        stock_transactions.time time,
+        stock_transactions.in_out in_out,
+        stock_transactions.product_id product_id,
+        stock_transactions.qtytrans qtytrans,
+        stock_transactions.transaction_id transaction_id,
+        stock_transactions.status status,
+        products.name name_product,
+        products.picture picture,
+        acount_id
+        FROM `stock_transactions` 
+        JOIN products USING(product_id)
+        JOIN tenan USING(tenan_id)
+        JOIN acounts USING(acount_id)
+        WHERE acount_id=$acounid AND in_out='masuk'
+        AND date='$date'
         ORDER BY date DESC, time DESC");
         return $this->db->resultSet();
     }

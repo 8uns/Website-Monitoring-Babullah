@@ -188,6 +188,13 @@ class Api extends Controller
                 if ($id == 'cancel') {
                     $data = $this->model('Transaction_model')->updateCancelTransaction($id2);
                 }
+                if (isset($_POST['date'])) {
+                    if ($_POST['date'] == '') {
+                        $data = $this->model('Transaction_model')->getTransactionAll($cektok['acount_id']);
+                    } else {
+                        $data = $this->model('Transaction_model')->getTransactionAllByDate($cektok['acount_id'], $_POST['date']);
+                    }
+                }
                 // else {
                 //     $data = $this->model('Transaction_model')->createTransaction($_POST);
                 // }
@@ -324,9 +331,18 @@ class Api extends Controller
                     $data = $this->model('StockTransaction_model')->getInventoryById($cektok['acount_id'], $id);
                 }
             } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $id);
-                if ($data) {
-                    $data = $this->model('Product_model')->updatePlusQtyProduct($_POST['quantity'], $id);
+
+                if (isset($_POST['date'])) {
+                    if ($_POST['date'] == '') {
+                        $data = $this->model('StockTransaction_model')->getInventoryAll($cektok['acount_id']);
+                    } else {
+                        $data = $this->model('StockTransaction_model')->getInventoryAllByDate($cektok['acount_id'], $_POST['date']);
+                    }
+                } else {
+                    $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $id);
+                    if ($data) {
+                        $data = $this->model('Product_model')->updatePlusQtyProduct($_POST['quantity'], $id);
+                    }
                 }
             }
 

@@ -46,6 +46,32 @@ class Transaction_model
         FROM `transactions` JOIN tenan USING(tenan_id) 
         JOIN `items` USING(transaction_id)
         WHERE acount_id=$acounid AND status=1
+        AND date=(SELECT date FROM `transactions`
+                    JOIN tenan USING(tenan_id) 
+                    JOIN `items` USING(transaction_id)
+                    WHERE acount_id=$acounid 
+                    ORDER BY date DESC LIMIT 0,1)
+        GROUP BY transaction_id
+        ORDER BY date DESC, time DESC
+        ");
+        return $this->db->resultSet();
+    }
+
+    public function getTransactionAllByDate($acounid, $date)
+    {
+        // untuk api
+        $this->db->query("SELECT 
+        transaction_id,
+        date,
+        time,
+        cancel,
+        status,
+        tenan_id, 
+        SUM((price*quantity)) total
+        FROM `transactions` JOIN tenan USING(tenan_id) 
+        JOIN `items` USING(transaction_id)
+        WHERE acount_id=$acounid AND status=1
+        AND date='$date'
         GROUP BY transaction_id
         ORDER BY date DESC, time DESC
         ");
