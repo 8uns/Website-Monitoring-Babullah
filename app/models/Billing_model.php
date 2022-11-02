@@ -167,9 +167,10 @@ class Billing_model
 
 
 
-  public function getBillingAll($acount_id)
+  public function getBillingAll($acount_id, $tahun)
   {
-    $this->db->query("SELECT 
+    if ($tahun != '') {
+      $this->db->query("SELECT 
         billing_id,
         month,
         TIME(date_file_tagihan) time,
@@ -189,9 +190,98 @@ class Billing_model
         FROM `billings` 
         JOIN `tenan` USING(tenan_id) 
         JOIN `acounts` USING(acount_id)
-        WHERE acount_id=$acount_id 
-        ORDER BY billing_id DESC");
-    return $this->db->resultSet();
+        WHERE acount_id=$acount_id
+        AND YEAR(date_file_tagihan)=$tahun
+        
+        UNION
+        
+        SELECT 
+        billing_id,
+        month,
+        TIME(date_file_tagihan) time,
+        YEAR(date_file_tagihan) year,
+        total,
+        date_file_tagihan,
+        file_konsesi,
+        file_sewatempat,
+        file_listrik,
+        file_billing,
+        payment_konsesi,
+        payment_sewatempat,
+        payment_listrik,
+        validation,
+        validationdate,
+        tenan_id 
+        FROM `billings` 
+        JOIN `tenan` USING(tenan_id) 
+        JOIN `acounts` USING(acount_id)
+        WHERE acount_id=$acount_id
+        AND validation=0
+        
+        ORDER BY validation ASC, billing_id DESC
+        ");
+      return $this->db->resultSet();
+    } else {
+      $this->db->query("SELECT 
+        billing_id,
+        month,
+        TIME(date_file_tagihan) time,
+        YEAR(date_file_tagihan) year,
+        total,
+        date_file_tagihan,
+        file_konsesi,
+        file_sewatempat,
+        file_listrik,
+        file_billing,
+        payment_konsesi,
+        payment_sewatempat,
+        payment_listrik,
+        validation,
+        validationdate,
+        tenan_id 
+        FROM `billings` 
+        JOIN `tenan` USING(tenan_id) 
+        JOIN `acounts` USING(acount_id)
+        WHERE acount_id=$acount_id
+        AND YEAR(date_file_tagihan)=(
+          SELECT 
+          YEAR(date_file_tagihan)
+          FROM `billings` 
+          JOIN `tenan` USING(tenan_id) 
+          JOIN `acounts` USING(acount_id)
+          WHERE acount_id=$acount_id
+              ORDER BY YEAR(date_file_tagihan) DESC LIMIT 0,1
+        )
+        
+        UNION
+        
+        SELECT 
+        billing_id,
+        month,
+        TIME(date_file_tagihan) time,
+        YEAR(date_file_tagihan) year,
+        total,
+        date_file_tagihan,
+        file_konsesi,
+        file_sewatempat,
+        file_listrik,
+        file_billing,
+        payment_konsesi,
+        payment_sewatempat,
+        payment_listrik,
+        validation,
+        validationdate,
+        tenan_id 
+        FROM `billings` 
+        JOIN `tenan` USING(tenan_id) 
+        JOIN `acounts` USING(acount_id)
+        WHERE acount_id=$acount_id
+        AND validation=0
+        
+        ORDER BY validation ASC, billing_id DESC
+        ");
+      return $this->db->resultSet();
+    }
   }
 
 

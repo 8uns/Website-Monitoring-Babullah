@@ -263,7 +263,7 @@ class Api extends Controller
 
 
     ############### BILLING ################################################################### 
-    public function billing($token = false, $id = null)
+    public function billing($token = false, $id = null, $id2 = null)
     {
         $idd = 1;
         $cektok = $this->cekToken($token);
@@ -271,6 +271,8 @@ class Api extends Controller
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 if ($id == null) {
                     $data = $this->model('Billing_model')->getBillingAll($cektok['acount_id']);
+                } elseif ($id == 'tahun') {
+                    $data = $this->model('Billing_model')->getBillingAll($cektok['acount_id'], $id2);
                 } elseif ($id == 'notif') {
                     $data = $this->model('Billing_model')->getBillingNotVal($cektok['acount_id']);
                     if (!$data) {
