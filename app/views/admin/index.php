@@ -24,7 +24,7 @@
 
             <div class="col-lg-6 col-sm-12 mt-4 p-5 pt-0 text-center">
                 <h2 class=" text-center border-bottom mb-1 pb-3 fw-bold">S I M P E L </h2>
-                <h6>Sistem Informasi Laporan Pendatapan dan E-Billing</h6>
+                <h6>Sistem Informasi Laporan Pendapatan dan E-Billing</h6>
                 <h6>Bandar Udara Sultan Babullah Ternate</h6>
                 <!-- <h2 class=" mb-5 text-center pb-2"><strong>Masuk</strong> </h2> -->
                 <div class="card mt-5">
