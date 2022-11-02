@@ -89,7 +89,7 @@ class Api extends Controller
             } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 if ($id == null) {
-                    if ($_POST['picture_name'] == "") {
+                    if ($_POST['picture'] == "") {
                         $data = $this->model('Product_model')->createProduct($_POST);
                         if (!$data) {
                             header("location:" . BASEURL . "apierror");
@@ -103,34 +103,34 @@ class Api extends Controller
                             }
                         }
                     } else {
-                        if (Bunlib::uploadImgBase64($_POST['picture_name'], 'img/produk/', $_POST['picture'], $_POST['tenan_id'])) {
-                            copy('indexcopy/index.php', 'img/produk/' . $_POST['tenan_id'] . '/index.php');
-                            $data = $this->model('Product_model')->createProduct($_POST, $_POST['picture_name']);
-                            if (!$data) {
-                                header("location:" . BASEURL . "apierror");
-                                exit;
-                            } else {
-                                if ($_POST['quantity'] > 0) {
-                                    $data = $this->model('Product_model')->getNewProductByTenan($_POST['tenan_id']);
-                                    if ($data) {
-                                        $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $data['product_id']);
-                                    }
-                                }
-                            }
+                        // if (Bunlib::uploadImgBase64($_POST['picture_name'], 'img/produk/', $_POST['picture'], $_POST['tenan_id'])) {
+                        // copy('indexcopy/index.php', 'img/produk/' . $_POST['tenan_id'] . '/index.php');
+                        $data = $this->model('Product_model')->createProduct($_POST, $_POST['picture']);
+                        if (!$data) {
+                            header("location:" . BASEURL . "apierror");
+                            exit;
                         } else {
-                            $data = $this->model('Product_model')->createProduct($_POST);
-                            if (!$data) {
-                                header("location:" . BASEURL . "apierror");
-                                exit;
-                            } else {
-                                if ($_POST['quantity'] > 0) {
-                                    $data = $this->model('Product_model')->getNewProductByTenan($_POST['tenan_id']);
-                                    if ($data) {
-                                        $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $data['product_id']);
-                                    }
+                            if ($_POST['quantity'] > 0) {
+                                $data = $this->model('Product_model')->getNewProductByTenan($_POST['tenan_id']);
+                                if ($data) {
+                                    $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $data['product_id']);
                                 }
                             }
                         }
+                        // } else {
+                        //     $data = $this->model('Product_model')->createProduct($_POST);
+                        //     if (!$data) {
+                        //         header("location:" . BASEURL . "apierror");
+                        //         exit;
+                        //     } else {
+                        //         if ($_POST['quantity'] > 0) {
+                        //             $data = $this->model('Product_model')->getNewProductByTenan($_POST['tenan_id']);
+                        //             if ($data) {
+                        //                 $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $data['product_id']);
+                        //             }
+                        //         }
+                        //     }
+                        // }
                     }
                 } else {
                     $data = $this->model('Product_model')->updateProduct($_POST, $id);

@@ -1,4 +1,4 @@
 <?php
 require_once 'app/init.php';
 
-header("location:".BASEURL);
+header("location:" . BASEURL . "public/");
