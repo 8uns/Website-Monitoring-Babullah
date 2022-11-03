@@ -20,11 +20,11 @@
             <?php
             if ($_SESSION['level'] == 0) {
             ?>
-            <!-- Button trigger modal -->
-            <a href="<?= BASEURL ?>Dashboardupbu/tenan" class="btn btn-primary" ">
+                <!-- Button trigger modal -->
+                <a href="<?= BASEURL ?>Dashboardupbu/tenan" class="btn btn-primary" ">
                     <i class=" fas fa-angle-double-left"></i>
-                Kembali
-            </a>
+                    Kembali
+                </a>
 
             <?php
             }
@@ -59,22 +59,17 @@
 
 
                             ?>
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td><?= $vals['transaction_id'] ?></td>
-                                <td><?= $vals['time'] ?></td>
-                                <td><?= $vals['date'] ?></td>
-                                <td>Rp. <?= $vals['total_harian'] ?></td>
-                                <td>
-                                    <a href="<?= BASEURL ?>Dashboardupbu/cetaktransDetail/<?= $vals['transaction_id'] ?>"
-                                        target="blank" title="Print Detail Transaksi" class="btn btn-warning btn-sm"
-                                        data-bs-toggle="tooltip"><i class="fas fa-file-alt"></i></a>
-                                    <button totaltrans='Rp. <?= $vals['total_harian'] ?>' onclick="getItemTrans(this)"
-                                        title="Lihat Detail Transaksi" type="button" class="btn btn-primary btn-sm"
-                                        data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-target="#showitemTrans"
-                                        value="<?= $vals['transaction_id'] ?>"><i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <th scope="row"><?= $i ?></th>
+                                    <td><?= $vals['transaction_id'] ?></td>
+                                    <td><?= $vals['time'] ?></td>
+                                    <td><?= $vals['date'] ?></td>
+                                    <td>Rp. <?= $vals['total_harian'] ?></td>
+                                    <td>
+                                        <a href="<?= BASEURL ?>Dashboardupbu/cetaktransDetail/<?= $vals['transaction_id'] ?>" target="blank" title="Print Detail Transaksi" class="btn btn-warning btn-sm" data-bs-toggle="tooltip"><i class="fas fa-file-alt"></i></a>
+                                        <button totaltrans='Rp. <?= $vals['total_harian'] ?>' onclick="getItemTrans(this)" title="Lihat Detail Transaksi" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-target="#showitemTrans" value="<?= $vals['transaction_id'] ?>"><i class="fas fa-eye"></i></button>
+                                    </td>
+                                </tr>
 
 
 

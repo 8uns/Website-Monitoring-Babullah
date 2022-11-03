@@ -42,7 +42,7 @@ class StockTransaction_model
         return $this->db->rowCount();
     }
 
-    public function getInventoryAll($acounid)
+    public function getInventoryAll($acounid, $in_out)
     {
         $this->db->query("SELECT 
         stock_transactions.date date,
@@ -59,7 +59,7 @@ class StockTransaction_model
         JOIN products USING(product_id)
         JOIN tenan USING(tenan_id)
         JOIN acounts USING(acount_id)
-        WHERE acount_id=$acounid AND in_out='masuk'
+        WHERE acount_id=$acounid AND in_out='$in_out'
         AND date=(
                     SELECT 
                     stock_transactions.date date
@@ -73,7 +73,7 @@ class StockTransaction_model
         ORDER BY date DESC, time DESC");
         return $this->db->resultSet();
     }
-    public function getInventoryAllByDate($acounid, $date)
+    public function getInventoryAllByDate($acounid, $date, $in_out)
     {
         $this->db->query("SELECT 
         stock_transactions.date date,
@@ -90,7 +90,7 @@ class StockTransaction_model
         JOIN products USING(product_id)
         JOIN tenan USING(tenan_id)
         JOIN acounts USING(acount_id)
-        WHERE acount_id=$acounid AND in_out='masuk'
+        WHERE acount_id=$acounid AND in_out='$in_out'
         AND date='$date'
         ORDER BY date DESC, time DESC");
         return $this->db->resultSet();

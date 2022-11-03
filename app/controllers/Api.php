@@ -328,17 +328,16 @@ class Api extends Controller
         if ($cektok) {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 if ($id == null) {
-                    $data = $this->model('StockTransaction_model')->getInventoryAll($cektok['acount_id']);
+                    $data = $this->model('StockTransaction_model')->getInventoryAll($cektok['acount_id'], 'masuk');
                 } else {
                     $data = $this->model('StockTransaction_model')->getInventoryById($cektok['acount_id'], $id);
                 }
             } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
                 if (isset($_POST['date'])) {
                     if ($_POST['date'] == '') {
-                        $data = $this->model('StockTransaction_model')->getInventoryAll($cektok['acount_id']);
+                        $data = $this->model('StockTransaction_model')->getInventoryAll($cektok['acount_id'], $_POST['in_out']);
                     } else {
-                        $data = $this->model('StockTransaction_model')->getInventoryAllByDate($cektok['acount_id'], $_POST['date']);
+                        $data = $this->model('StockTransaction_model')->getInventoryAllByDate($cektok['acount_id'], $_POST['date'], $_POST['in_out']);
                     }
                 } else {
                     $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $id);

@@ -38,25 +38,23 @@
                     <div class="row">
 
                         <?php
-
                         $i = 1;
-
                         foreach ($data['produktenan'] as $vals) :
 
-
                         ?>
-                            <div class="col-4">
-                                <div class="card text-center">
-                                    <?php if ($vals['picture'] != null || $vals['picture'] != '') : ?>
-                                        <img src="<?= BASEURL ?>img/produk/<?= $data['tenan']['tenan_id'] ?>/<?= $vals['picture'] ?>" class="card-img-top" alt="...">
+                            <div class="col-4 mb-3">
+                                <div class="card text-center hover">
+                                    <?php if ($vals['picture'] != null || $vals['picture'] != '') :
+                                        echo '<img style="width: 100%; height: 130px;" class="card-img-top" src="data:image/gif;base64,' . $vals['picture'] . '" />';
+                                    ?>
 
                                     <?php else : ?>
                                         <i class="fas fa-image text-secondary" style="font-size: 8em;"></i>
                                     <?php endif; ?>
 
                                     <div class="card-body text-start">
-                                        <h5 class="card-title"><?= $vals['name_product'] ?></h5>
-                                        <hr>
+                                        <h5 class="card-title mb-1"><?= $vals['name_product'] ?></h5>
+                                        <hr class="mb-1 mt-2">
                                         <h6 class="card-subtitle mb-2 text-muted">Harga: Rp. <?= $vals['price'] ?></h6>
                                         <p class="card-text">Qty: <?= $vals['quantity'] ?></p>
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-target="#StockInOut<?= $vals['product_id'] ?>">History Keluar/Masuk</button>

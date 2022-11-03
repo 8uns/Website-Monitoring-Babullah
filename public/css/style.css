@@ -177,6 +177,10 @@ div#login a.stretched-link {
     font-weight: bold;
 }
 
+.card.text-center.hover {
+    box-shadow: 4px 4px 16px #0006;
+}
+
 .container.dashboard .card-header {
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;

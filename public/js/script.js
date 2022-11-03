@@ -1,5 +1,10 @@
 // var BASEURL = "http://localhost/upbumonitoring/public/";
-var BASEURL = "https://simpelbabullah.online/";
+// var BASEURL = "https://simpelbabullah.online/";
+
+const http = window.location.origin;
+let pathArray = window.location.pathname.split("/");
+const path = pathArray[1] + "/" + pathArray[2];
+const BASEURL = http + "/" + path + "/";
 
 
 // $.ajax({

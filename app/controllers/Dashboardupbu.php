@@ -264,9 +264,7 @@ class Dashboardupbu extends Controller
     public function cekHarianTenan($id)
     {
         $data['halaman'] = 'tenan';
-
         $data['transaksiharian'] = $this->model('Tenan_model')->cekHarianTenanDetail($_POST, $id);
-
 
         if ($data['transaksiharian']) {
             $this->view('templates/head', $data);
