@@ -47,6 +47,7 @@ class Api extends Controller
                 <li>
                 <a href=" . BASEURL . "api/inventaris/" . $token . ">inventaris</a>
                 </li>
+                
 
                 <li>
                 <a href=" . BASEURL . "api/transaksi/" . $token . ">transaksi</a>
@@ -61,7 +62,10 @@ class Api extends Controller
                 <a href=" . BASEURL . "api/billing/" . $token . ">billing</a>
                 </li>
 
-                
+                 <li>
+                <a href=" . BASEURL . "api/pendapatan/" . $token . ">pendapatan</a>
+                </li>
+
                 
                 </ul>
         ";
@@ -343,6 +347,62 @@ class Api extends Controller
                     $data = $this->model('StockTransaction_model')->insertStockProduct($_POST, $id);
                     if ($data) {
                         $data = $this->model('Product_model')->updatePlusQtyProduct($_POST['quantity'], $id);
+                    }
+                }
+            }
+
+            header('Content-Type: application/json');
+            $data = [
+                "id" => $idd,
+                "data" => $data,
+            ];
+            echo json_encode($data, JSON_NUMERIC_CHECK);
+        } else {
+            header("location:" . BASEURL . "apierror");
+            exit;
+        }
+    }
+
+
+    public function pendapatan($token = false, $id = null, $id2 = null)
+    {
+        $idd = 1;
+        $cektok = $this->cekToken($token);
+        if ($cektok) {
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                // if ($id == null) {
+                //     $data = $this->model('StockTransaction_model')->getInventoryAll($cektok['acount_id'], 'masuk');
+                // } else {
+                //     $data = $this->model('StockTransaction_model')->getInventoryById($cektok['acount_id'], $id);
+                // }
+            } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($id == 'bulanan') {
+                    if ($id2 == 'total') {
+                        if ($_POST['bulan'] != '' && $_POST['tahun'] != '') {
+                            $data = $this->model('Tenan_model')->cekBulananTotal($_POST, $_POST['tenan_id']);
+                        } else {
+                            $data = $this->model('Tenan_model')->cekBulananTotalTerbaru($_POST['tenan_id']);
+                        }
+                    } else {
+                        if ($_POST['bulan'] != '' && $_POST['tahun'] != '') {
+                            $data = $this->model('Tenan_model')->cekBulananDetail($_POST, $_POST['tenan_id']);
+                        } else {
+                            $data = $this->model('Tenan_model')->cekBulananDetailTerbaru($_POST['tenan_id']);
+                        }
+                    }
+                } elseif ($id == 'harian') {
+                    if ($id2 == 'total') {
+                        if ($_POST['tgl'] != '') {
+                            $data = $this->model('Tenan_model')->cekHarianTenanTotal($_POST, $_POST['tenan_id']);
+                        } else {
+                            $data = $this->model('Tenan_model')->cekHarianTenanTotalTerbaru($_POST['tenan_id']);
+                        }
+                    } else {
+                        if ($_POST['tgl'] != '') {
+                            $data = $this->model('Tenan_model')->cekHarianTenanDetail($_POST, $_POST['tenan_id']);
+                        } else {
+                            $data = $this->model('Tenan_model')->cekHarianTenanDetailTerbaru($_POST['tenan_id']);
+                        }
                     }
                 }
             }

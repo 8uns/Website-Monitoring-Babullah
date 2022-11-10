@@ -239,6 +239,54 @@ class Tenan_model
         $this->db->query($query);
         return $this->db->resultSet();
     }
+
+    public function cekHarianTenanDetailTerbaru($id)
+    {
+        $query = "SELECT tenan.name nama_tenan, transaction_id, date, DATE_FORMAT(date, '%d') tgl, time, FORMAT(SUM((price*quantity)),0) total_harian, tenan_id FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+					WHERE tenan_id=$id AND 
+                    transactions.date=(
+                    SELECT date FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+					WHERE tenan_id=$id 
+					ORDER BY date DESC LIMIT 0,1
+                    )
+					GROUP BY transaction_id ";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+    public function cekHarianTenanTotal($data, $id)
+    {
+        $query = "SELECT tenan.name nama_tenan, transaction_id, date, DATE_FORMAT(date, '%d') tgl, time, FORMAT(SUM((price*quantity)),0) total_harian, tenan_id FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+					WHERE tenan_id=$id AND transactions.date='{$data['tgl']}'
+					GROUP BY date ";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+    public function cekHarianTenanTotalTerbaru($id)
+    {
+        $query = "SELECT tenan.name nama_tenan, transaction_id, date, DATE_FORMAT(date, '%d') tgl, time, FORMAT(SUM((price*quantity)),0) total_harian, tenan_id FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+					WHERE tenan_id=$id AND 
+                    transactions.date=(
+                    SELECT date FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+					WHERE tenan_id=$id 
+					ORDER BY date DESC LIMIT 0,1
+                    )
+					GROUP BY date ";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+
     // Cek data Tenan Bulanan
     public function cekBulananDetail($data, $id)
     {
@@ -248,6 +296,33 @@ class Tenan_model
                     JOIN acounts USING(acount_id)
                     
                     WHERE MONTH(date) = '{$data['bulan']}' AND YEAR(date)='{$data['tahun']}' AND tenan_id=$id
+					GROUP BY date ORDER BY date ASC";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+    public function cekBulananDetailTerbaru($id)
+    {
+        $query = "SELECT tenan.name nama_tenan, acounts.name namapengelola, transaction_id, date, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0) total_bulan, tenan_id FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+                    JOIN acounts USING(acount_id)
+                     
+                    WHERE MONTH(date) =(
+                    SELECT MONTH(date) FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+                    JOIN acounts USING(acount_id)
+                    
+                    WHERE tenan_id=$id ORDER BY date DESC LIMIT 0,1
+                    ) AND YEAR(date)=(
+                    SELECT YEAR(date) FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+                    JOIN acounts USING(acount_id)
+                    
+                    WHERE tenan_id=$id ORDER BY date DESC LIMIT 0,1
+                    )
+                     AND tenan_id=$id
 					GROUP BY date ORDER BY date ASC";
         $this->db->query($query);
         return $this->db->resultSet();
@@ -264,6 +339,40 @@ class Tenan_model
         $this->db->query($query);
         return $this->db->resultSet();
     }
+
+    public function cekBulananTotalTerbaru($id)
+    {
+        $query = "SELECT tenan.name nama_tenan, acounts.name namapengelola, transaction_id, date, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0) total_bulan, tenan_id FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+                    JOIN acounts USING(acount_id)
+                    
+                    WHERE MONTH(date) = 
+                    (
+                    SELECT MONTH(date) FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+                    JOIN acounts USING(acount_id)
+                    
+                    WHERE tenan_id=$id
+					ORDER BY date DESC LIMIT 0,1
+                    )
+                    AND YEAR(date)=
+                    (
+                    SELECT YEAR(date) FROM transactions
+					JOIN items USING(transaction_id)
+					JOIN tenan USING(tenan_id)
+                    JOIN acounts USING(acount_id)
+                    
+                    WHERE tenan_id=$id
+					ORDER BY date DESC LIMIT 0,1
+                    )
+                    AND tenan_id=$id
+					GROUP BY MONTH(date) ORDER BY date ASC";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
 
     // Cek data Tenan Bulanan
     public function cekTahunanDetail($data, $id)
