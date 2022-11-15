@@ -231,7 +231,16 @@ class Tenan_model
     // Cek data Tenan Harian
     public function cekHarianTenanDetail($data, $id)
     {
-        $query = "SELECT tenan.name nama_tenan, transaction_id, date, DATE_FORMAT(date, '%d') tgl, time, FORMAT(SUM((price*quantity)),0) total_harian, tenan_id FROM transactions
+        $query = "SELECT 
+        tenan.name nama_tenan, 
+        transaction_id, 
+        date, 
+        DATE_FORMAT(date, '%d') tgl, 
+        time, 
+        FORMAT(SUM((price*quantity)),0) total_harian, 
+        tenan_id,
+        SUM((price*quantity)) total
+        FROM transactions
 					JOIN items USING(transaction_id)
 					JOIN tenan USING(tenan_id)
 					WHERE tenan_id=$id AND transactions.date='{$data['tgl']}'
@@ -242,7 +251,15 @@ class Tenan_model
 
     public function cekHarianTenanDetailTerbaru($id)
     {
-        $query = "SELECT tenan.name nama_tenan, transaction_id, date, DATE_FORMAT(date, '%d') tgl, time, FORMAT(SUM((price*quantity)),0) total_harian, tenan_id FROM transactions
+        $query = "SELECT 
+        tenan.name nama_tenan, 
+        transaction_id, 
+        date, 
+        DATE_FORMAT(date, '%d') tgl, 
+        time, 
+        FORMAT(SUM((price*quantity)),0) total_harian, 
+        tenan_id 
+        FROM transactions
 					JOIN items USING(transaction_id)
 					JOIN tenan USING(tenan_id)
 					WHERE tenan_id=$id AND 
