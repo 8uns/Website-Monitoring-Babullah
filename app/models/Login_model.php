@@ -13,7 +13,7 @@ class Login_model
         $value = false;
         $data['password'] = $this->bunlib->generatePassword($password);
         $data['username'] = $username;
-        $query = "SELECT acounts.name name, username, token, acount_id, tenan.name tenan, tenan_id, levels, password FROM acounts JOIN tenan USING(acount_id)";
+        $query = "SELECT acounts.name name, username, token, acount_id, tenan.name tenan, tenan_id, levels, password, contract_period FROM acounts JOIN tenan USING(acount_id)";
         $this->db->query($query);
         $this->db->execute();
         $dataMember = $this->db->resultSet();
@@ -29,6 +29,7 @@ class Login_model
                 $_SESSION['level'] = $user['levels'];
                 $_SESSION['token'] = $user['token'];
                 $_SESSION['tenan_id'] = $user['tenan_id'];
+                $_SESSION['contract_period'] = $user['contract_period'];
                 $value = $_SESSION;
             }
         }
