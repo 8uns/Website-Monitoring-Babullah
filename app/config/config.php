@@ -15,8 +15,9 @@ define('BASEURL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'
 // // DB
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', '#Simpel_Babullah');
 define('DB_NAME', 'monitoring_upbu');
+// define('DB_PASS', '');
 // define('DB_NAME', 'monitoring_upbu_testing');
 
 // define('DB_HOST', 'localhost');
