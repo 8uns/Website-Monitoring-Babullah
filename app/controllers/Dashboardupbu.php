@@ -32,6 +32,7 @@ class Dashboardupbu extends Controller
 
         $data['akuntenan'] = $this->model('Acounts_model')->getAcountTenanAll();
         $data['tenan'] = $this->model('Tenan_model')->getTenanNotAkunAll();
+        $data['tenanAkun'] = $this->model('Tenan_model')->getTenanWithAkunAll();
 
         $this->view('templates/head', $data);
         $this->view('templates/header', $data);

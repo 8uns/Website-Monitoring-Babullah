@@ -48,6 +48,12 @@ class Tenan_model
         return $this->db->resultSet();
     }
 
+    public function getTenanWithAkunAll()
+    {
+        $this->db->query("SELECT * FROM tenan WHERE acount_id IS NOT NULL");
+        return $this->db->resultSet();
+    }
+
     public function getAkunTenanAll()
     {
         $this->db->query("SELECT * FROM `acounts` JOIN `tenan` USING(acount_id)");
