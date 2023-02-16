@@ -1,5 +1,6 @@
 <?php
 // define('BASEURL', 'http://bdev.local/upbumonitoring/public/');
+// define('BASEURL', 'http://192.168.138.95/upbumonitoring/public/');
 // define('BASEURL', 'http://192.168.1.21/upbumonitoring/public/');
 // // define('BASEURL', 'https://simpelbabullah.online/public/');
 // // define('BASEURL', 'https://simpelbabullah.online/');
@@ -15,7 +16,8 @@ define('BASEURL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'monitoring_upbu_testing');
+define('DB_NAME', 'monitoring_upbu');
+// define('DB_NAME', 'monitoring_upbu_testing');
 
 // define('DB_HOST', 'localhost');
 // define('DB_USER', 'u552485360_tifadb');
