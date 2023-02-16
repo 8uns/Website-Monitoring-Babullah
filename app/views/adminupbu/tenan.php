@@ -337,8 +337,8 @@
                                                                                 <label for="" class="form-label">Pilih Tahun :</label>
                                                                                 <select name="tahun" class="form-select" aria-label="Default select example" required>
                                                                                     <option value="">Pilih Tahun</option>
-                                                                                    <?php for ($i = 2021; $i <= date("Y"); $i++) : ?>
-                                                                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                                                                    <?php for ($j = 2021; $j <= date("Y"); $j++) : ?>
+                                                                                        <option value="<?= $j ?>"><?= $j ?></option>
                                                                                     <?php endfor; ?>
                                                                                 </select>
                                                                             </p>
@@ -367,8 +367,8 @@
                                                                                 <label for="" class="form-label">Pilh Tahun :</label>
                                                                                 <select name="tahun" class="form-select" aria-label="Default select example" required>
                                                                                     <option value="">Pilih Tahun</option>
-                                                                                    <?php for ($i = 2021; $i <= date("Y"); $i++) : ?>
-                                                                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                                                                    <?php for ($thn = 2021; $thn <= date("Y"); $thn++) : ?>
+                                                                                        <option value="<?= $thn ?>"><?= $thn ?></option>
                                                                                     <?php endfor; ?>
 
                                                                                 </select>
