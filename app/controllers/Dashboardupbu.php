@@ -400,7 +400,6 @@ class Dashboardupbu extends Controller
     // Tambah Billing baru 
     public function tambahBilling()
     {
-        echo "<h1> gagal cok </h1>";
 
         $filekonsesi = md5('konsesi' . $_FILES['file_konsesi']['name'] . date("Y-m-d H:i:s"));
         $filesewatempat = md5('lapak' . $_FILES['file_sewatempat']['name'] . date("Y-m-d H:i:s"));
@@ -420,6 +419,8 @@ class Dashboardupbu extends Controller
             // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
             exit;
         } else {
+            echo "<h3> gagal cok </h3>";
+
             $uploadsewatempat = Bunlib::UploadFileTo('file_sewatempat', 'file/billing/', $filesewatempat, ['pdf'], '2024070', $_POST['tenan_id']);
             if ($uploadsewatempat == 'empty') {
                 Flasher::setFlash('Gagal.', 'File Tagihan Sewa Tempat kosong', 'danger');
