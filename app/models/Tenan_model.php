@@ -34,6 +34,21 @@ class Tenan_model
         ");
         return $this->db->resultSet();
     }
+
+    public function getTenanFilterByAcount()
+    {
+        $this->db->query("
+        SELECT tenan_id, tenan.name name, npwp, contract_period, acount_id, username, acounts.name name_acount,
+            (SELECT file_contract FROM contract_tenan WHERE tenan_id=tenan.tenan_id ORDER BY contract_tenan_id DESC LIMIT 0,1) file_contract ,
+            (SELECT contract_tenan_id FROM contract_tenan WHERE tenan_id=tenan.tenan_id ORDER BY contract_tenan_id DESC LIMIT 0,1) contract_tenan_id 
+            FROM `tenan` 
+            LEFT JOIN `acounts` USING(acount_id)
+             WHERE acount_id IS NOT NULL
+            ORDER BY tenan_id DESC
+        ");
+        return $this->db->resultSet();
+    }
+
     public function getArsipKontrak($id)
     {
         $this->db->query("

@@ -387,7 +387,7 @@ class Dashboardupbu extends Controller
         $data['nama'] = $_SESSION['name'];
 
         $data['billing'] = $this->model('Billing_model')->getBillingAllTenan();
-        $data['tenan'] = $this->model('Tenan_model')->getTenanAll();
+        $data['tenan'] = $this->model('Tenan_model')->getTenanFilterByAcount();
         $this->view('templates/head', $data);
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
