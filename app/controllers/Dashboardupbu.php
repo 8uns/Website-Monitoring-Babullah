@@ -419,7 +419,6 @@ class Dashboardupbu extends Controller
             // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
             exit;
         } else {
-            echo "<h3> gagal cok </h3>";
 
             $uploadsewatempat = Bunlib::UploadFileTo('file_sewatempat', 'file/billing/', $filesewatempat, ['pdf'], '2024070', $_POST['tenan_id']);
             if ($uploadsewatempat == 'empty') {
@@ -435,6 +434,8 @@ class Dashboardupbu extends Controller
                 // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                 exit;
             } else {
+                echo "<h2> gagal cok </h2>";
+
                 $uploadlistrik = Bunlib::UploadFileTo('file_listrik', 'file/billing/', $filelistrik, ['pdf'], '2024070', $_POST['tenan_id']);
                 if ($uploadlistrik == 'empty') {
                     Flasher::setFlash('Gagal.', 'File Tagihan Listrik', 'danger');
