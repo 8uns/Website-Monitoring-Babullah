@@ -449,13 +449,16 @@ class Dashboardupbu extends Controller
                     // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                     exit;
                 } else {
-                    echo "<h6> gagal cok </h6>";
 
                     copy('indexcopy/index.php', 'file/billing/' . $_POST['tenan_id'] . '/index.php');
                     if ($this->model('Billing_model')->uploadBillingAdmin($_POST, $uploadkonsesi, $uploadsewatempat, $uploadlistrik) > 0) {
+                        echo "<h4> berhasil cok </h4>";
+
                         Flasher::setFlash('berhasil', 'ditambahkan', 'success');
                         // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                         exit;
+                    } else {
+                        echo "<h4> gagal cok </h4>";
                     }
                 }
             }
