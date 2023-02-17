@@ -408,62 +408,55 @@ class Dashboardupbu extends Controller
         $uploadkonsesi = Bunlib::UploadFileTo('file_konsesi', 'file/billing/', $filekonsesi, ['pdf'], '2024070', $_POST['tenan_id']);
         if ($uploadkonsesi == 'empty') {
             Flasher::setFlash('Gagal.', 'File Konsesi kosong', 'danger');
-            // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+            header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
             exit;
         } elseif ($uploadkonsesi == 'ext') {
             Flasher::setFlash('Gagal.', 'Ekstensi File Konsesi bukan Pdf', 'danger');
-            // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+            header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
             exit;
         } elseif ($uploadkonsesi == 'oversize') {
             Flasher::setFlash('Gagal.', 'File Tagihan Konsesi Lebih Dari 2 MB', 'danger');
-            // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+            header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
             exit;
         } else {
 
             $uploadsewatempat = Bunlib::UploadFileTo('file_sewatempat', 'file/billing/', $filesewatempat, ['pdf'], '2024070', $_POST['tenan_id']);
             if ($uploadsewatempat == 'empty') {
                 Flasher::setFlash('Gagal.', 'File Tagihan Sewa Tempat kosong', 'danger');
-                // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+                header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                 exit;
             } elseif ($uploadsewatempat == 'ext') {
                 Flasher::setFlash('Gagal.', 'Ekstensi File Sewa Tempat bukan Pdf', 'danger');
-                // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+                header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                 exit;
             } elseif ($uploadsewatempat == 'oversize') {
                 Flasher::setFlash('Gagal.', 'File Tagihan Sewa Tempat Lebih Dari 2 MB', 'danger');
-                // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+                header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                 exit;
             } else {
 
                 $uploadlistrik = Bunlib::UploadFileTo('file_listrik', 'file/billing/', $filelistrik, ['pdf'], '2024070', $_POST['tenan_id']);
                 if ($uploadlistrik == 'empty') {
                     Flasher::setFlash('Gagal.', 'File Tagihan Listrik', 'danger');
-                    // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+                    header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                     exit;
                 } elseif ($uploadlistrik == 'ext') {
                     Flasher::setFlash('Gagal.', 'Ekstensi File Listrik Pdf', 'danger');
-                    // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+                    header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                     exit;
                 } elseif ($uploadlistrik == 'oversize') {
                     Flasher::setFlash('Gagal.', 'File Tagihan Listrik Lebih Dari 2 MB', 'danger');
-                    // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+                    header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                     exit;
                 } else {
-                    echo '<p>belum di eksekusi</p>';
 
-                    try {
-                        if ($this->model('Billing_model')->uploadBillingAdmin($_POST, $uploadkonsesi, $uploadsewatempat, $uploadlistrik) > 0) {
-                            echo "<h4> berhasil cok </h4>";
+                    copy('indexcopy/index.php', 'file/billing/' . $_POST['tenan_id'] . '/index.php');
 
-                            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
-                            // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
-                            exit;
-                        } else {
-                            echo "<h4> gagal cok </h4>";
-                        }
-                        copy('indexcopy/index.php', 'file/billing/' . $_POST['tenan_id'] . '/index.php');
-                    } catch (Exception $e) {
-                        echo "Message: " . $e->getMessage();
+                    if ($this->model('Billing_model')->uploadBillingAdmin($_POST, $uploadkonsesi, $uploadsewatempat, $uploadlistrik) > 0) {
+
+                        Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+                        header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
+                        exit;
                     }
                 }
             }
