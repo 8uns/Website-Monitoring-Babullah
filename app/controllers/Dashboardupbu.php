@@ -455,6 +455,7 @@ class Dashboardupbu extends Controller
                 }
             }
         }
+        echo "gagal cok";
     }
 
     public function keluarkanBilling($tenan_id, $id)
