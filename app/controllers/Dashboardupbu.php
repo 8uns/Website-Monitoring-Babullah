@@ -449,8 +449,8 @@ class Dashboardupbu extends Controller
                     // header('Location: ' . BASEURL . 'Dashboardupbu/billingtenan');
                     exit;
                 } else {
+                    echo '<p>belum di eksekusi</p>';
 
-                    copy('indexcopy/index.php', 'file/billing/' . $_POST['tenan_id'] . '/index.php');
                     if ($this->model('Billing_model')->uploadBillingAdmin($_POST, $uploadkonsesi, $uploadsewatempat, $uploadlistrik) > 0) {
                         echo "<h4> berhasil cok </h4>";
 
@@ -460,6 +460,7 @@ class Dashboardupbu extends Controller
                     } else {
                         echo "<h4> gagal cok </h4>";
                     }
+                    copy('indexcopy/index.php', 'file/billing/' . $_POST['tenan_id'] . '/index.php');
                 }
             }
         }
