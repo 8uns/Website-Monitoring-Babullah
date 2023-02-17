@@ -403,6 +403,8 @@ class Billing_model
       $this->db->query($query);
       $this->db->bind('payment_konsesi', $filepaymant);
       $this->db->bind('billing_id', $id);
+      $this->db->execute();
+      return $this->db->rowCount();
     } elseif ($tipe == 'listrik') {
       $query = "UPDATE `billings`  
                     SET 
@@ -412,6 +414,8 @@ class Billing_model
       $this->db->query($query);
       $this->db->bind('payment_listrik', $filepaymant);
       $this->db->bind('billing_id', $id);
+      $this->db->execute();
+      return $this->db->rowCount();
     } elseif ($tipe == 'lapak') {
       $query = "UPDATE `billings`  
                     SET 
@@ -421,11 +425,9 @@ class Billing_model
       $this->db->query($query);
       $this->db->bind('payment_sewatempat', $filepaymant);
       $this->db->bind('billing_id', $id);
+      $this->db->execute();
+      return $this->db->rowCount();
     }
-
-
-    $this->db->execute();
-    return $this->db->rowCount();
   }
   public function uploadBilling($data, $id)
   {
