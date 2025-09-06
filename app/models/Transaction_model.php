@@ -23,11 +23,26 @@ class Transaction_model
     }
     public function getTransactionMonthUpTenan()
     {
-        $this->db->query("SELECT tenan.name nama_tenan, FORMAT(SUM((price*quantity)), 0) total, DATE_FORMAT(date, '%M') bulan, YEAR(date) tahun FROM tenan
-            JOIN transactions USING(tenan_id)
-            JOIN items USING(transaction_id)
-            WHERE MONTH(date) = MONTH(SYSDATE())
-            GROUP BY MONTH(date), tenan_id
+        // $this->db->query("SELECT 
+        // tenan.name nama_tenan, 
+        // FORMAT(SUM((price*quantity)), 0) total, 
+        // DATE_FORMAT(date, '%M') bulan, 
+        // YEAR(date) tahun FROM tenan
+        //     JOIN transactions USING(tenan_id)
+        //     JOIN items USING(transaction_id)
+        //     WHERE MONTH(date) = MONTH(SYSDATE())
+        //     GROUP BY MONTH(date), tenan_id
+        // ");
+        $this->db->query("SELECT
+            tenan.name AS nama_tenan,
+            FORMAT(SUM(items.price * items.quantity), 0) AS total,
+            DATE_FORMAT(MAX(transactions.date), '%M') AS bulan,
+            YEAR(MAX(transactions.date)) AS tahun
+        FROM tenan
+        JOIN transactions ON tenan.tenan_id = transactions.tenan_id
+        JOIN items ON transactions.transaction_id = items.transaction_id
+        WHERE MONTH(transactions.date) = MONTH(SYSDATE())
+        GROUP BY tenan.tenan_id, tenan.name
         ");
         return $this->db->resultSet();
     }

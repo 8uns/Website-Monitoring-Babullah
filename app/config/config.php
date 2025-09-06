@@ -5,18 +5,21 @@
 // // define('BASEURL', 'https://simpelbabullah.online/public/');
 // // define('BASEURL', 'https://simpelbabullah.online/');
 
-define('BASEURL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'
-    ? "https"
-    : "http")
-    . "://$_SERVER[HTTP_HOST]" . dirname($_SERVER['SCRIPT_NAME'])
-    . (!str_ends_with(dirname($_SERVER['SCRIPT_NAME']), "/") ? "/" : ""));
+define('BASEURL', 'http://localhost/Web-Monitoring-Tenan-Babullah/public/');
+
+// define('BASEURL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'
+//     ? "https"
+//     : "http")
+//     . "://$_SERVER[HTTP_HOST]" . dirname($_SERVER['SCRIPT_NAME'])
+//     . (!str_ends_with(dirname($_SERVER['SCRIPT_NAME']), "/") ? "/" : ""));
 
 
 // // DB
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '#Simpel_Babullah');
-define('DB_NAME', 'monitoring_upbu');
+
+define('DB_USER', 'admin');
+define('DB_PASS', '#admin*');
+define('DB_NAME', 'monitoring_upbu_01012024');
 // define('DB_PASS', '');
 // define('DB_NAME', 'monitoring_upbu_testing');
 

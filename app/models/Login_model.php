@@ -2,6 +2,10 @@
 
 class Login_model
 {
+
+    private $db;
+    private $bunlib;
+
     public function __construct()
     {
         $this->db = new Database;
