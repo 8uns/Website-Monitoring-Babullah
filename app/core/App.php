@@ -13,7 +13,6 @@ class App
             $this->controller = "Dashboardupbu";
         }
 
-
         $url = $this->parseURL();
 
         // controller

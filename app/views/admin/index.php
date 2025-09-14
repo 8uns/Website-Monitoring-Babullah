@@ -10,7 +10,6 @@
     </div>
     <div id="login admin" class="container mb-4 pt-4 pb-4 pr-5 pl-5">
 
-
         <div class="row">
             <div class="col">
                 <?php Flasher::flashAll() ?>
@@ -19,8 +18,6 @@
 
 
         <div class="row justify-content-center  align-items-center">
-
-
 
             <div class="col-lg-6 col-sm-12 mt-4 p-5 pt-0 text-center">
                 <h2 class=" text-center border-bottom mb-1 pb-3 fw-bold">S I M P E L </h2>
@@ -31,7 +28,6 @@
                     <div class="card-body">
                         <form action="<?= BASEURL ?>login/loggedin/admin" method="post" class="mt-5">
                             <div class="mb-4">
-<
                                 <i class="fas fa-user"></i>
 
                                 <!-- <label for="exampleInputEmail1" class="form-label">Username</label> -->
@@ -57,8 +53,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <div class="container mt-5">
