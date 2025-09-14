@@ -326,6 +326,18 @@ class Tenan_model
 
 
     // Cek data Tenan Bulanan
+    // public function cekBulananDetail($data, $id)
+    // {
+    //     $query = "SELECT tenan.name nama_tenan, acounts.name namapengelola, transaction_id, date, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0) total_bulan, tenan_id FROM transactions
+	// 				JOIN items USING(transaction_id)
+	// 				JOIN tenan USING(tenan_id)
+    //                 JOIN acounts USING(acount_id)
+                    
+    //                 WHERE MONTH(date) = '{$data['bulan']}' AND YEAR(date)='{$data['tahun']}' AND tenan_id=$id
+	// 				GROUP BY date ORDER BY date ASC";
+    //     $this->db->query($query);
+    //     return $this->db->resultSet();
+    // }
     public function cekBulananDetail($data, $id)
     {
         $query = "SELECT tenan.name nama_tenan, acounts.name namapengelola, transaction_id, date, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0) total_bulan, tenan_id FROM transactions
@@ -334,7 +346,7 @@ class Tenan_model
                     JOIN acounts USING(acount_id)
                     
                     WHERE MONTH(date) = '{$data['bulan']}' AND YEAR(date)='{$data['tahun']}' AND tenan_id=$id
-					GROUP BY date ORDER BY date ASC";
+					GROUP BY transaction_id, date ORDER BY date ASC";
         $this->db->query($query);
         return $this->db->resultSet();
     }
@@ -365,7 +377,19 @@ class Tenan_model
         $this->db->query($query);
         return $this->db->resultSet();
     }
-    public function cekBulananTotal($data, $id)
+    // public function cekBulananTotal($data, $id)
+    // {
+    //     $query = "SELECT tenan.name nama_tenan, acounts.name namapengelola, transaction_id, date, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0) total_bulan, tenan_id FROM transactions
+	// 				JOIN items USING(transaction_id)
+	// 				JOIN tenan USING(tenan_id)
+    //                 JOIN acounts USING(acount_id)
+                    
+    //                 WHERE MONTH(date) = '{$data['bulan']}' AND YEAR(date)='{$data['tahun']}' AND tenan_id=$id
+	// 				GROUP BY MONTH(date) ORDER BY date ASC";
+    //     $this->db->query($query);
+    //     return $this->db->resultSet();
+    // }
+     public function cekBulananTotal($data, $id)
     {
         $query = "SELECT tenan.name nama_tenan, acounts.name namapengelola, transaction_id, date, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0) total_bulan, tenan_id FROM transactions
 					JOIN items USING(transaction_id)
@@ -373,7 +397,7 @@ class Tenan_model
                     JOIN acounts USING(acount_id)
                     
                     WHERE MONTH(date) = '{$data['bulan']}' AND YEAR(date)='{$data['tahun']}' AND tenan_id=$id
-					GROUP BY MONTH(date) ORDER BY date ASC";
+					GROUP BY MONTH(date), transaction_id ORDER BY date ASC";
         $this->db->query($query);
         return $this->db->resultSet();
     }
@@ -413,6 +437,17 @@ class Tenan_model
 
 
     // Cek data Tenan Bulanan
+    // public function cekTahunanDetail($data, $id)
+    // {
+    //     $query = "SELECT tenan.name nama_tenan, transaction_id, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0)  total_tahun, tenan_id FROM transactions
+	// 				JOIN items USING(transaction_id)
+	// 				JOIN tenan USING(tenan_id)
+                    
+    //                 WHERE YEAR(date)='{$data['tahun']}' AND tenan_id=$id
+	// 				GROUP BY MONTH(date) ORDER BY date ASC ";
+    //     $this->db->query($query);
+    //     return $this->db->resultSet();
+    // }
     public function cekTahunanDetail($data, $id)
     {
         $query = "SELECT tenan.name nama_tenan, transaction_id, MONTH(date) bulan, YEAR(date) tahun, FORMAT(SUM((price*quantity)),0)  total_tahun, tenan_id FROM transactions
@@ -420,7 +455,7 @@ class Tenan_model
 					JOIN tenan USING(tenan_id)
                     
                     WHERE YEAR(date)='{$data['tahun']}' AND tenan_id=$id
-					GROUP BY MONTH(date) ORDER BY date ASC ";
+					GROUP BY MONTH(date), transaction_id ORDER BY date ASC ";
         $this->db->query($query);
         return $this->db->resultSet();
     }
