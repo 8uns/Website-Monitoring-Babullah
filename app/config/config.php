@@ -5,13 +5,15 @@
 // // define('BASEURL', 'https://simpelbabullah.online/public/');
 // // define('BASEURL', 'https://simpelbabullah.online/');
 
-define('BASEURL', 'http://localhost/Website-Monitoring-Babullah/public/');
+// define('BASEURL', 'http://localhost/Website-Monitoring-Babullah/public/');
+// Cek apakah server menggunakan HTTPS
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
 
-// define('BASEURL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'
-//     ? "https"
-//     : "http")
-//     . "://$_SERVER[HTTP_HOST]" . dirname($_SERVER['SCRIPT_NAME'])
-//     . (!str_ends_with(dirname($_SERVER['SCRIPT_NAME']), "/") ? "/" : ""));
+// Ambil nama server
+$host = $_SERVER['SERVER_NAME'];
+
+// Gabungkan protokol dan host
+define('BASEURL', "$protocol://$host/Website-Monitoring-Babullah/public/");
 
 
 // // DB
